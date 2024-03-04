@@ -3,8 +3,8 @@ import { useState } from "react"
 import { Usuario } from "../interfaces/Usuario"
 
 const listaUsuarios: Usuario[] =[
-  {id: 1, nombre: 'María', apellido: ' Enciso'},
-  {id: 2, nombre: 'Mercedes', apellido: ' Nuñez'},
+  {id: 1, nombre: 'Junior', apellido: ' Cabral'},
+  {id: 2, nombre: 'Julio', apellido: ' Tercero'},
 ]
 
 export const UsuarioPage = () => {
