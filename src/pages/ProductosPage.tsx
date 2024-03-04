@@ -1,17 +1,16 @@
 import { useState } from "react"
 import { BotonVolver } from "../components/BotonVolver"
 import { Producto } from "../interfaces/Producto"
+import {useForm} from "../hooks/useForm.ts";
 
-const listaProductos: Producto[] = [
-  {id: 1, descripcion: 'Tomate', precio: '2000.00'},
-  {id: 2, descripcion: 'Lechuga', precio: '3000.00'},
-  {id: 3, descripcion: 'Locote', precio: '5000.00'},
-]
+const estadoInicialFormulario = {
+    descripcion: "",
+    precio: ""
+}
 
 export const ProductosPage = () => {
-  const [productos, setProductos] = useState<Producto[]>(listaProductos)
-  const [descripcion, setDescripcion] = useState("")
-  const [precio, setPrecio] = useState("")
+  const [productos, setProductos] = useState<Producto[]>([])
+  const {descripcion, precio, onChange, reset} = useForm(estadoInicialFormulario)
 
   const agregarProducto = (descripcion: string, precio: string) => {
     const nuevoProducto : Producto =
@@ -29,8 +28,7 @@ export const ProductosPage = () => {
       return
     }
     agregarProducto (descripcion, precio)
-    setDescripcion("")
-    setPrecio("")
+    reset()
   }
 
   return (
@@ -46,13 +44,12 @@ export const ProductosPage = () => {
 
          <input type="text" name="descripcion" placeholder="Descripcion" 
             value={descripcion} onChange={(event) =>{
-              setDescripcion(event.target.value)
-
+                onChange("descripcion", event.target.value)
             }}
          />
          <input type="text" name="precio" placeholder="Precio" 
             value={precio} onChange={(event) => {
-              setPrecio(event.target.value)
+              onChange("precio", event.target.value)
             }}
          />
 

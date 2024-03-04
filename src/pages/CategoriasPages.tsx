@@ -2,15 +2,15 @@ import { useState } from "react"
 import { BotonProductos } from "../components/BotonProductos"
 import { BotonVolver } from "../components/BotonVolver"
 import { Categoria } from "../interfaces/Categoria"
+import {useForm} from "../hooks/useForm.ts";
 
-const listaCategorias: Categoria[] = [
-  {id: 1, descripcion: 'Frutas'},
-  {id: 2, descripcion: 'Verduras'},
-]
+const estadoInicialCategoria = {
+    descripcion: ""
+}
 
 export const CategoriasPage = () => {
-  const [categoria, setCategoria] = useState<Categoria[]>(listaCategorias)
-  const [descripcion, setDescripcion] = useState("")
+  const [categoria, setCategoria] = useState<Categoria[]>([])
+    const {descripcion, onChange, reset} = useForm(estadoInicialCategoria)
 
   const agregarCategoria = (descripcion: string) => {
     const nuevaCategoria : Categoria =
@@ -27,7 +27,7 @@ export const CategoriasPage = () => {
       return
     }
     agregarCategoria (descripcion)
-    setDescripcion("")
+    reset()
   }
   return (
     <>
@@ -41,7 +41,7 @@ export const CategoriasPage = () => {
 
          <input type="text" name="descripcion" placeholder="Descripcion" 
             value={descripcion} onChange={(event) =>{
-              setDescripcion(event.target.value)
+              onChange("descripcion",event.target.value)
 
             }}
          />

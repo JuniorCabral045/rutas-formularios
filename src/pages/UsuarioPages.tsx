@@ -1,17 +1,17 @@
 import { BotonVolver } from "../components/BotonVolver"
 import { useState } from "react"
 import { Usuario } from "../interfaces/Usuario"
+import {useForm} from "../hooks/useForm.ts";
 
-const listaUsuarios: Usuario[] =[
-  {id: 1, nombre: 'Junior', apellido: ' Cabral', edad: 20},
-  {id: 2, nombre: 'Julio', apellido: ' Tercero', edad: 21},
-]
+const estadoInicialUsuario = {
+    nombre: "",
+    apellido: "",
+    edad: 0,
+}
 
 export const UsuarioPage = () => {
-  const [usuario, setUsuario] = useState <Usuario[]>(listaUsuarios)
-  const [nombre, setNombre] = useState ("")
-  const [apellido, setApellido] = useState ("")
-    const [edad, setEdad] = useState (0)
+  const [usuario, setUsuario] = useState <Usuario[]>([])
+  const {nombre, apellido, edad, onChange, reset} = useForm(estadoInicialUsuario)
 
   const agregarUsuario = (nombre: string, apellido: string, edad: number) => {
     const nuevoUsuario: Usuario = 
@@ -32,9 +32,7 @@ export const UsuarioPage = () => {
     }
 
     agregarUsuario(nombre, apellido, edad)
-    setNombre("")
-    setApellido("")
-      setEdad(0)
+    reset()
   }
   return (
       <>
@@ -48,17 +46,17 @@ export const UsuarioPage = () => {
             <div>Nombre</div>
           <input type="text" name="nombre" placeholder="Nombre de usuario"
                  value={nombre} onChange={(event) => {
-              setNombre(event.target.value)
+              onChange("nombre", event.target.value)
           }}/>
             <div>Apellido</div>
           <input type="text" name="apellido" placeholder="Apellido de usuario"
                  value={apellido} onChange={(event) => {
-              setApellido(event.target.value)
+              onChange("apellido", event.target.value)
           }}/>
             <div>Edad</div>
           <input type="number" name="edad" placeholder="Edad de usuario"
                  value={edad} onChange={(event) => {
-              setEdad(parseInt(event.target.value))
+              onChange("edad", event.target.value)
           }}/>
             <br/>
             <br/>
@@ -66,6 +64,7 @@ export const UsuarioPage = () => {
           <button onClick={() => onAgregarClicked()}>
               Agregar Usuario
           </button>
+
           <BotonVolver/>
       </>
   )
