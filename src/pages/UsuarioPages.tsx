@@ -35,37 +35,58 @@ export const UsuarioPage = () => {
     reset()
   }
   return (
-      <>
+      <div className="container">
           <h1>Usuarios</h1>
-          <hr/>
-          <ul>
-              {
-                  usuario.map(usuario => <li key={usuario.id}> {usuario.nombre} {usuario.apellido} {usuario.edad}</li>)
-              }
-          </ul>
-            <div>Nombre</div>
-          <input type="text" name="nombre" placeholder="Nombre de usuario"
-                 value={nombre} onChange={(event) => {
-              onChange("nombre", event.target.value)
-          }}/>
-            <div>Apellido</div>
-          <input type="text" name="apellido" placeholder="Apellido de usuario"
-                 value={apellido} onChange={(event) => {
-              onChange("apellido", event.target.value)
-          }}/>
-            <div>Edad</div>
-          <input type="number" name="edad" placeholder="Edad de usuario"
-                 value={edad} onChange={(event) => {
-              onChange("edad", event.target.value)
-          }}/>
-            <br/>
-            <br/>
+            <hr/>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Edad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {usuario.map((item) => (
+                        <tr key={item.id}>
+                            <th scope="row">{item.id}</th>
+                            <td>{item.nombre}</td>
+                            <td>{item.apellido}</td>
+                            <td>{item.edad}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <form onSubmit={(e)=>{
+                e.preventDefault();
+                onAgregarClicked();
+            }}>
+            <div className="mb-3">
+                <label className="form-label">Nombre</label>
+                <input type="text" className="form-control" id="nombre" required={true}
+                value={nombre} onChange={(event) =>{
+                    onChange("nombre", event.target.value)
+                }}/>
+            </div>
+            <div className="mb-3">
+                <label className="form-label">Apellido</label>
+                <input type="text" className="form-control" id="apellido" required={true}
+                value={apellido} onChange={(event) =>{
+                    onChange("apellido", event.target.value)
+                }}/>
+            </div>
+            <div className="mb-3">
+                <label className="form-label">Edad</label>
+                <input type="number" className="form-control" id="edad" required={true}
+                value={edad} onChange={(event) =>{
+                    onChange("edad", event.target.value)
+                }}/>
+            </div>
+            <button type="submit" className="btn btn-primary" disabled={!nombre || !apellido || !edad}>Agregar</button>
+            <BotonVolver/>
 
-          <button onClick={() => onAgregarClicked()}>
-              Agregar Usuario
-          </button>
-
-          <BotonVolver/>
-      </>
+            </form>
+      </div>
   )
 }

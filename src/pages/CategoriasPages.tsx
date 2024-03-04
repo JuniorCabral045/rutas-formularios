@@ -5,52 +5,73 @@ import { Categoria } from "../interfaces/Categoria"
 import {useForm} from "../hooks/useForm.ts";
 
 const estadoInicialCategoria = {
-    descripcion: ""
+    descripcion: "",
+    codigo: ""
 }
 
 export const CategoriasPage = () => {
   const [categoria, setCategoria] = useState<Categoria[]>([])
-    const {descripcion, onChange, reset} = useForm(estadoInicialCategoria)
+    const {descripcion, codigo, onChange, reset} = useForm(estadoInicialCategoria)
 
-  const agregarCategoria = (descripcion: string) => {
+  const agregarCategoria = (descripcion: string, codigo: string) => {
     const nuevaCategoria : Categoria =
     {
       id: categoria.length + 1,
-      descripcion: descripcion
+      descripcion: descripcion,
+      codigo: codigo
     }  
     setCategoria(categoria.concat(nuevaCategoria))
   }
 
   const onAgregarClicked = () => {
-    if (descripcion.length === 0) {
-      alert ("Ingrese todos los campos")
-      return
-    }
-    agregarCategoria (descripcion)
+    agregarCategoria (descripcion, codigo)
     reset()
   }
   return (
-    <>
-    <h1>Categorías</h1>
-    <hr />
-         <ul>
-            {
-              categoria.map(categoria => <li key={categoria.id}> {categoria.descripcion} </li>)
-            } 
-         </ul>
+      <div className="container mt-4">
+            <h1>Categorías</h1>
+            <hr/>
+          <table className="table table-striped">
+              <thead>
+                  <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Descripción</th>
+                      <th scope="col">Código</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {categoria.map((item) => (
+                      <tr key={item.id}>
+                          <th scope="row">{item.id}</th>
+                          <td>{item.descripcion}</td>
+                          <td>{item.codigo}</td>
+                      </tr>
+                  ))}
+              </tbody>
+          </table>
 
-         <input type="text" name="descripcion" placeholder="Descripcion" 
-            value={descripcion} onChange={(event) =>{
-              onChange("descripcion",event.target.value)
-
-            }}
-         />
-
-         <button onClick={() => onAgregarClicked()}>
-            Agregar Categoria
-         </button>
-    <BotonVolver/>
-    <BotonProductos/>
-</>
+          <form onSubmit={(e) => {
+              e.preventDefault();
+              onAgregarClicked();
+          }}>
+              <div className="mb-3">
+                  <label className="form-label">Descripción</label>
+                  <input type="text" className="form-control" id="descripcion" required={true}
+                         value={descripcion} onChange={(event) => {
+                      onChange("descripcion", event.target.value)
+                  }}/>
+              </div>
+              <div className="mb-3">
+                  <label className="form-label">Código</label>
+                  <input type="text" className="form-control" id="codigo" required={true}
+                         value={codigo} onChange={(event) => {
+                      onChange("codigo", event.target.value)
+                  }}/>
+              </div>
+              <button className="btn btn-primary" type="submit" disabled={!descripcion || !codigo}>Agregar</button>
+              <BotonVolver/>
+              <BotonProductos/>
+          </form>
+      </div>
   )
 }
