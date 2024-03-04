@@ -17,7 +17,7 @@ export const UsuarioPage = () => {
     {
       id: usuario.length +1,
       nombre: nombre,
-      apellido: apellido
+      apellido: ' ' + apellido
     }
 
     setUsuario(usuario.concat(nuevoUsuario))
