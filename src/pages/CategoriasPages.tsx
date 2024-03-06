@@ -68,7 +68,7 @@ export const CategoriasPage = () => {
                       onChange("codigo", event.target.value)
                   }}/>
               </div>
-              <button className="btn btn-primary" type="submit" disabled={!descripcion || !codigo}>Agregar</button>
+              <button className="btn btn-success" type="submit" disabled={!descripcion || !codigo}>Agregar</button>
               <BotonVolver/>
               <BotonProductos/>
           </form>

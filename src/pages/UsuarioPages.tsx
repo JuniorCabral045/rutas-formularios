@@ -83,7 +83,7 @@ export const UsuarioPage = () => {
                     onChange("edad", event.target.value)
                 }}/>
             </div>
-            <button type="submit" className="btn btn-primary" disabled={!nombre || !apellido || !edad}>Agregar</button>
+            <button type="submit" className="btn btn-success" disabled={!nombre || !apellido || !edad}>Agregar</button>
             <BotonVolver/>
 
             </form>

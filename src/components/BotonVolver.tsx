@@ -5,6 +5,6 @@ export const BotonVolver = () => {
     const navigate = useNavigate()
 
   return (
-         <button className={"btn btn-primary m-2"} onClick={ ()=> navigate('/inicio') } >Volver a Inicio</button>
+         <button className={"btn btn-danger m-2"} onClick={ ()=> navigate('/inicio') } >Volver a Inicio</button>
     )
 }

@@ -73,7 +73,7 @@ export const ProductosPage = () => {
                     onChange("precio", event.target.value)
                 )}/>
             </div>
-            <button type="submit" className="btn btn-primary" disabled={!descripcion || !precio}>Agregar</button>
+            <button type="submit" className="btn btn-success" disabled={!descripcion || !precio}>Agregar</button>
             <BotonVolver/>
         </form>
     </div>
