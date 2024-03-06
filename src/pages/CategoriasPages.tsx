@@ -29,26 +29,8 @@ export const CategoriasPage = () => {
   }
   return (
       <div className="container mt-4">
-            <h1>Categorías</h1>
-            <hr/>
-          <table className="table table-striped">
-              <thead>
-                  <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Descripción</th>
-                      <th scope="col">Código</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {categoria.map((item) => (
-                      <tr key={item.id}>
-                          <th scope="row">{item.id}</th>
-                          <td>{item.descripcion}</td>
-                          <td>{item.codigo}</td>
-                      </tr>
-                  ))}
-              </tbody>
-          </table>
+          <h1>Categorías</h1>
+          <hr/>
 
           <form onSubmit={(e) => {
               e.preventDefault();
@@ -72,6 +54,24 @@ export const CategoriasPage = () => {
               <BotonVolver/>
               <BotonProductos/>
           </form>
+          <table className="table table-striped">
+              <thead>
+              <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Código</th>
+              </tr>
+              </thead>
+              <tbody>
+              {categoria.map((item) => (
+                  <tr key={item.id}>
+                      <th scope="row">{item.id}</th>
+                      <td>{item.descripcion}</td>
+                      <td>{item.codigo}</td>
+                  </tr>
+              ))}
+              </tbody>
+          </table>
       </div>
   )
 }

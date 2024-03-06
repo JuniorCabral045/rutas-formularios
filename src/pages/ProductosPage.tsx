@@ -33,50 +33,50 @@ export const ProductosPage = () => {
 
   return (
 
-    <div className="container">
-        <h1>Productos</h1>
-        <hr/>
-        <table className="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Precio</th>
-                </tr>
-            </thead>
-            <tbody>
-                {productos.map((item) => (
-                    <tr key={item.id}>
-                        <th scope="row">{item.id}</th>
-                        <td>{item.descripcion}</td>
-                        <td>{item.precio}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+      <div className="container">
+          <h1>Productos</h1>
+          <hr/>
 
-        <form onSubmit={(e) => {
-            e.preventDefault();
-            onAgregarClicked();
-        }}>
-            <div className="mb-3">
-                <label className="form-label">Descripción</label>
-                <input type="text" className="form-control" id="descripcion" required={true}
-                value={descripcion} onChange={(event) =>(
-                    onChange("descripcion", event.target.value)
-                )}/>
-            </div>
-            <div className="mb-3">
-                <label className="form-label">Precio</label>
-                <input type="number" className="form-control" id="precio" required={true}
-                value={precio} onChange={event => (
-                    onChange("precio", event.target.value)
-                )}/>
-            </div>
-            <button type="submit" className="btn btn-success" disabled={!descripcion || !precio}>Agregar</button>
-            <BotonVolver/>
-        </form>
-    </div>
+          <form onSubmit={(e) => {
+              e.preventDefault();
+              onAgregarClicked();
+          }}>
+              <div className="mb-3">
+                  <label className="form-label">Descripción</label>
+                  <input type="text" className="form-control" id="descripcion" required={true}
+                         value={descripcion} onChange={(event) => (
+                      onChange("descripcion", event.target.value)
+                  )}/>
+              </div>
+              <div className="mb-3">
+                  <label className="form-label">Precio</label>
+                  <input type="number" className="form-control" id="precio" required={true}
+                         value={precio} onChange={event => (
+                      onChange("precio", event.target.value)
+                  )}/>
+              </div>
+              <button type="submit" className="btn btn-success" disabled={!descripcion || !precio}>Agregar</button>
+              <BotonVolver/>
+          </form>
+          <table className="table table-striped">
+              <thead>
+              <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Precio</th>
+              </tr>
+              </thead>
+              <tbody>
+              {productos.map((item) => (
+                  <tr key={item.id}>
+                      <th scope="row">{item.id}</th>
+                      <td>{item.descripcion}</td>
+                      <td>{item.precio}</td>
+                  </tr>
+              ))}
+              </tbody>
+          </table>
+      </div>
 
   )
 }

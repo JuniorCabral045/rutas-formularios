@@ -37,56 +37,57 @@ export const UsuarioPage = () => {
   return (
       <div className="container">
           <h1>Usuarios</h1>
-            <hr/>
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Edad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {usuario.map((item) => (
-                        <tr key={item.id}>
-                            <th scope="row">{item.id}</th>
-                            <td>{item.nombre}</td>
-                            <td>{item.apellido}</td>
-                            <td>{item.edad}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <form onSubmit={(e)=>{
-                e.preventDefault();
-                onAgregarClicked();
-            }}>
-            <div className="mb-3">
-                <label className="form-label">Nombre</label>
-                <input type="text" className="form-control" id="nombre" required={true}
-                value={nombre} onChange={(event) =>{
-                    onChange("nombre", event.target.value)
-                }}/>
-            </div>
-            <div className="mb-3">
-                <label className="form-label">Apellido</label>
-                <input type="text" className="form-control" id="apellido" required={true}
-                value={apellido} onChange={(event) =>{
-                    onChange("apellido", event.target.value)
-                }}/>
-            </div>
-            <div className="mb-3">
-                <label className="form-label">Edad</label>
-                <input type="number" className="form-control" id="edad" required={true}
-                value={edad} onChange={(event) =>{
-                    onChange("edad", event.target.value)
-                }}/>
-            </div>
-            <button type="submit" className="btn btn-success" disabled={!nombre || !apellido || !edad}>Agregar</button>
-            <BotonVolver/>
+          <hr/>
 
-            </form>
+          <form onSubmit={(e) => {
+              e.preventDefault();
+              onAgregarClicked();
+          }}>
+              <div className="mb-3">
+                  <label className="form-label">Nombre</label>
+                  <input type="text" className="form-control" id="nombre" required={true}
+                         value={nombre} onChange={(event) => {
+                      onChange("nombre", event.target.value)
+                  }}/>
+              </div>
+              <div className="mb-3">
+                  <label className="form-label">Apellido</label>
+                  <input type="text" className="form-control" id="apellido" required={true}
+                         value={apellido} onChange={(event) => {
+                      onChange("apellido", event.target.value)
+                  }}/>
+              </div>
+              <div className="mb-3">
+                  <label className="form-label">Edad</label>
+                  <input type="number" className="form-control" id="edad" required={true}
+                         value={edad} onChange={(event) => {
+                      onChange("edad", event.target.value)
+                  }}/>
+              </div>
+              <button type="submit" className="btn btn-success" disabled={!nombre || !apellido || !edad}>Agregar
+              </button>
+              <BotonVolver/>
+          </form>
+          <table className="table table-striped">
+              <thead>
+              <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Edad</th>
+              </tr>
+              </thead>
+              <tbody>
+              {usuario.map((item) => (
+                  <tr key={item.id}>
+                      <th scope="row">{item.id}</th>
+                      <td>{item.nombre}</td>
+                      <td>{item.apellido}</td>
+                      <td>{item.edad}</td>
+                  </tr>
+              ))}
+              </tbody>
+          </table>
       </div>
   )
 }
