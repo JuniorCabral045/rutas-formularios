@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { BotonProductos } from "../components/BotonProductos"
 import { BotonVolver } from "../components/BotonVolver"
 import { Categoria } from "../interfaces/Categoria"
 import {useForm} from "../hooks/useForm.ts";
+import {BotonNavegador} from "../components/BotonNavegador.tsx";
 
 const estadoInicialCategoria = {
     descripcion: "",
@@ -52,7 +52,7 @@ export const CategoriasPage = () => {
               </div>
               <button className="btn btn-success" type="submit" disabled={!descripcion || !codigo}>Agregar</button>
               <BotonVolver/>
-              <BotonProductos/>
+              <BotonNavegador ruta={"/productos"} name={"Productos"}/>
           </form>
           <table className="table table-striped">
               <thead>

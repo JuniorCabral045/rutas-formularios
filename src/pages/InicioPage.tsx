@@ -1,25 +1,14 @@
-import { useNavigate } from "react-router-dom"
-import { BotonProductos } from "../components/BotonProductos"
+import {BotonNavegador} from "../components/BotonNavegador.tsx";
 
 export const InicioPage = () => {
-
-    const navigate = useNavigate()
-
-    const navegarAusuarios = () => {
-        navigate('/usuarios')
-    } 
-    const navegarAcategorias = () => {
-      navigate('/categorias')
-  } 
-
 
   return (
     <div className="container">
         <h1>Inicio</h1>
         <hr/>
-        <BotonProductos/>
-        <button className={"btn btn-primary m-2"} onClick={navegarAusuarios}>Usuarios</button>
-        <button className={"btn btn-primary"} onClick={navegarAcategorias}>Categorías</button>
+        <BotonNavegador name={"Productos"} ruta={"/productos"} margenDerecho={true}/>
+        <BotonNavegador name={"Usuarios"} ruta={"/usuarios"} margenDerecho={true}/>
+        <BotonNavegador name={"Categorías"} ruta={"/categorias"}/>
 
 
     </div>
